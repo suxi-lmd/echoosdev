@@ -18,10 +18,10 @@
 //     unsigned int shift = (pin_number % num_fields) * field_size;
 
 //     unsigned int curval;
-//     in32bit(reg , &curval);
+//     in32(reg , &curval);
 //     curval &= ~(field_mask << shift);
 //     curval |= value << shift;
-//     out32bit(reg, curval);
+//     out32(reg, curval);
 
 //     return 1;
 // }
@@ -31,7 +31,7 @@ unsigned int gpio_read(unsigned int pin_number)
     unsigned int value;
     unsigned int shift = (pin_number % 32);
     unsigned int reg = GPLEV0 + (pin_number / 32 * 4);
-    in32bit(reg, &value);
+    in32(reg, &value);
     return (value >> shift) & 0x1;
 }
 
@@ -44,7 +44,7 @@ unsigned int gpio_write(unsigned int pin_number, unsigned int value)
     } else {
         reg = GPSET0 + (pin_number / 32 * 4);
     }
-    out32bit(reg, 1 << shift);
+    out32(reg, 1 << shift);
     
     return 0;
 }
@@ -54,10 +54,10 @@ unsigned int gpio_set_pull(unsigned int pin_number, unsigned int value)
     unsigned int reg = GPIO_PUP_PDN_CNTRL_REG0 + (pin_number / (32 / 2) * 4);
     unsigned int shift = pin_number % (32 / 2);
     unsigned int curval;
-    in32bit(reg, &curval);
+    in32(reg, &curval);
     curval &= ~(0x3 << shift);
     curval |= value << shift;
-    out32bit(reg, curval);
+    out32(reg, curval);
 
     return 0;
 }
@@ -67,10 +67,10 @@ unsigned int gpio_set_function(unsigned int pin_number, unsigned int value)
     unsigned int reg = GPIO_PUP_PDN_CNTRL_REG0 + (pin_number / (32 / 3) * 4);
     unsigned int shift = pin_number % (32 / 3);
     unsigned int curval;
-    in32bit(reg, &curval);
+    in32(reg, &curval);
     curval &= ~(0x7 << shift);
     curval |= value << shift;
-    out32bit(reg, curval);
+    out32(reg, curval);
 
     return 0;
 }

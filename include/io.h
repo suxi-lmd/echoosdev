@@ -7,7 +7,7 @@
 void mmio_write(long reg, unsigned int val);
 unsigned int mmio_read(long reg);
 
-void in32bit(unsigned int addr, unsigned int *val);
-void out32bit(unsigned int addr, unsigned int val);
+void in32(unsigned int addr, unsigned int *val);
+void out32(unsigned int addr, unsigned int val);
 
 #endif  /*_IO_H */
