@@ -16,7 +16,7 @@ C_FILES = $(wildcard $(SRC_DIR)/*.c)
 ASM_FILES = $(wildcard $(SRC_DIR)/*.S)
 OBJ_FILES = $(C_FILES:$(SRC_DIR)/%.c=$(OUT_DIR)/%.o)
 OBJ_FILES += $(ASM_FILES:$(SRC_DIR)/%.S=$(OUT_DIR)/%.o)
-q
+
 ifeq ($(UNAME), Linux)
 ARMGNU = aarch64-linux-gnu
 GCCFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles -Iinclude
