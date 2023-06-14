@@ -19,7 +19,7 @@ void uart_init() {
     out32(AUX_MU_CNTL_REG, 3); //enable RX/TX
 }
 
-unsigned int uart_isWriteReady() 
+static unsigned int uart_isWriteReady() 
 {
     unsigned int status;
     in32(AUX_MU_LSR_REG , &status);
@@ -40,8 +40,33 @@ void uart_puts(const char *str)
     }
 }
 
+static unsigned int uart_isReadReady()
+{
+    unsigned int status;
+    in32(AUX_MU_LSR_REG , &status);
+    return status & 0x1; //bit 0
+}
+
 char uart_getc(void)
 {
-    return 'c';
+    char c;
+    while (!uart_isReadReady());
+    in32(AUX_MU_IO_REG, (unsigned int *)&c);
 
+    return c;
+}
+
+void uart_gets(char *buf, int buf_size)
+{
+    int i = 0;
+    char c;
+    while (i < buf_size - 1) {
+        c = uart_getc();
+        if (c == '\r') {
+            buf[i] = '\0';
+            return;
+        }
+        buf[i++] = c;
+    }
+    buf[i] = '\0';
 }

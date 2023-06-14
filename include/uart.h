@@ -29,7 +29,8 @@ void uart_init(void);
 void uart_putc(unsigned char c);
 void uart_puts(const char *str);
 char uart_getc(void);
-
+void uart_gets(char *buf, int buf_size);
+void printf(const char *format, ...);
 
 
 #endif  /*_UART_H */
