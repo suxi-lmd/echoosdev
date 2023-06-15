@@ -46,3 +46,8 @@ echoos.img: $(LINKER_DIR)/linker.ld $(OBJ_FILES)
 	$(LLVMPATH)/ld.lld -T $(LINKER_DIR)/linker.ld -m aarch64elf -nostdlib $(OBJ_FILES) -e _start -o $(OUT_DIR)/echoos.elf
 	$(LLVMPATH)/llvm-objcopy -O binary $(OUT_DIR)/echoos.elf $(OUT_DIR)/echoos.img
 endif
+
+run:
+	qemu-system-aarch64 -machine raspi4 -nographic -kernel $(OUT_DIR)/echoos.img
+debug:
+	qemu-system-aarch64 -machine raspi4 -nographic -kernel $(OUT_DIR)/echoos.elf -S -s
