@@ -4,25 +4,28 @@
 #include "io.h"
 
 enum {
-    AUX_BASE        = PERIPHERAL_BASE + 0x215000,
-    AUX_IRQ         = AUX_BASE + 0x00, // Auxiliary Interrupt status
-    AUX_ENABLES     = AUX_BASE + 0x04, // Auxiliary enables
-    AUX_MU_IO_REG   = AUX_BASE + 0x40, // Mini Uart I/O Data
-    AUX_MU_IER_REG  = AUX_BASE + 0x44, // Mini Uart Interrupt Enable
-    AUX_MU_IIR_REG  = AUX_BASE + 0x48, // Mini Uart Interrupt Identify
-    AUX_MU_LCR_REG  = AUX_BASE + 0x4C, // Mini Uart Line Control
-    AUX_MU_MCR_REG  = AUX_BASE + 0x50, // Mini Uart Modem Control
-    AUX_MU_LSR_REG  = AUX_BASE + 0x54, // Mini Uart Line Status
-    AUX_MU_MSR_REG  = AUX_BASE + 0x58, // Mini Uart Modem Status
-    AUX_MU_SCRATCH  = AUX_BASE + 0x5C, // Mini Uart Scratch
-    AUX_MU_CNTL_REG = AUX_BASE + 0x60, // Mini Uart Extra Control
-    AUX_MU_STAT_REG = AUX_BASE + 0x64, // Mini Uart Extra Status
-    AUX_MU_BAUD_REG = AUX_BASE + 0x68, // Mini Uart Baudrate
-    AUX_UART_CLOCK  = 500000000,       // Mini Uart clock
-    UART_MAX_QUEUE  = 16 * 1024,       // UART FIFO size
+    UART_BASE        = PERIPHERAL_BASE + 0x201000,
+    UART_DR          = UART_BASE + 0x00, // Data Register
+    UART_RSRECR      = UART_BASE + 0x04, // Receive Status Register / Error Clear Register
+    UART_FR          = UART_BASE + 0x18, // Flag Register
+    UART_ILPR        = UART_BASE + 0x20, // IrDA Low-power Counter Register
+    UART_IBRD        = UART_BASE + 0x24, // Integer Baud Rate Register
+    UART_FBRD        = UART_BASE + 0x28, // Fractional Baud Rate Register
+    UART_LCRH        = UART_BASE + 0x2C, // Line Control Register
+    UART_CR          = UART_BASE + 0x30, // Control Register
+    UART_IFLS        = UART_BASE + 0x34, // Interrupt FIFO Level Select Register
+    UART_IMSC        = UART_BASE + 0x38, // Interrupt Mask Set Clear Register
+    UART_RIS         = UART_BASE + 0x3C, // Raw Interrupt Status Register
+    UART_MIS         = UART_BASE + 0x40, // Masked Interrupt Status Register
+    UART_ICR         = UART_BASE + 0x44, // Interrupt Clear Register
+    UART_DMACR       = UART_BASE + 0x48, // DMA Control Register
+    UART_ITCR        = UART_BASE + 0x80, // Test Control Register
+    UART_ITIP        = UART_BASE + 0x84, // Integration Test Input Register
+    UART_ITOP        = UART_BASE + 0x88, // Integration Test Output Register
+    UART_TDR         = UART_BASE + 0x8C, // Test Data Register
+    UART_CLOCK       = 48000000,         // UART clock
 };
-
-#define AUX_MU_BAUD(baud) ((AUX_UART_CLOCK/(baud*8))-1)
+#define UART_BAUD(baud) ((UART_CLOCK/(baud*16))-1)
 
 void uart_init(void);
 
@@ -30,7 +33,6 @@ void uart_putc(unsigned char c);
 void uart_puts(const char *str);
 char uart_getc(void);
 void uart_gets(char *buf, int buf_size);
-void printf(const char *format, ...);
 
 
 #endif  /*_UART_H */
