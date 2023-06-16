@@ -3,13 +3,17 @@
 
 typedef char * va_list;  
 
-
+#ifdef CONFIG_HOST_DARWIN
 #define _INTSIZEOF(n)  ((sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1))
-#define va_start(ap,v) (ap = (va_list)&v - (7 * _INTSIZEOF(v)))        
+#define va_start(ap,v) (ap = (va_list)&v - (7 * _INTSIZEOF(v)))
 #define va_arg(ap,t)   (*(t *)((ap += (2 * _INTSIZEOF(t))) - (2 * _INTSIZEOF(t))))
 #define va_end(ap)     ( ap = (va_list)0 )
-
-
+#else // CONFIG_HOST_LINUX
+#define _INTSIZEOF(n)  ((sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1))
+#define va_start(ap,v) (ap = (va_list)&v - (7 * _INTSIZEOF(v)))
+#define va_arg(ap,t)   (*(t *)((ap += (2 * _INTSIZEOF(t))) - (2 * _INTSIZEOF(t))))
+#define va_end(ap)     ( ap = (va_list)0 )
+#endif
 
 char num_tab[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9','a','b','c','d','e','f'};
 

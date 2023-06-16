@@ -20,7 +20,7 @@ OBJ_FILES += $(ASM_FILES:$(SRC_DIR)/%.S=$(OUT_DIR)/%.o)
 ifeq ($(UNAME), Linux)
 ARMGNU = aarch64-linux-gnu
 GCCFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles -Iinclude
-
+GCCFLAGS += -DCONFIG_HOST_LINUX
 $(OUT_DIR)/%.o: $(SRC_DIR)/%.S
 	$(ARMGNU)-gcc $(GCCFLAGS) -MMD -c $< -o $@
 
@@ -35,6 +35,7 @@ endif
 ifeq ($(UNAME), Darwin)
 LLVMPATH = /opt/homebrew/opt/llvm/bin
 CLANGFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -mcpu=cortex-a72+nosimd -Iinclude
+CLANGFLAGS += -DCONFIG_HOST_DARWIN
 
 $(OUT_DIR)/%.o: $(SRC_DIR)/%.S
 	$(LLVMPATH)/clang --target=aarch64-elf $(CLANGFLAGS) -c $< -o $@
