@@ -38,6 +38,13 @@ void test_printf(void)
     printf("test printf %d %d %d %d %d\n", 1, 2, 3, 4, 5);
     printf("test printf %d %d %d %d %d %d\n", 1, 2, 3, 4, 5, 6);
     printf("test printf %d %d %d %d %d %d %d\n", 1, 2, 3, 4, 5, 6, 7);
+    printf("test printf %d %d %d %d %d %d %d %d\n", 1, 2, 3, 4, 5, 6, 7, 8);
+    printf("test printf %d %d %d %d %d %d %d %d %d\n", 1, 2, 3, 4, 5, 6, 7, 8, 9);
+    printf("test printf %d %d %d %d %d %d %d %d %d %d\n", 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10);
+    printf("test printf %d %d %d %d %d %d %d %d %d %d %d\n",
+    1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11);
+    printf("test printf %d %d %d %d %d %d %d %d %d %d %d %d\n",
+    1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12);
 
     printf("test printf %x\n", 0x12345678);
     printf("test printf %x %x\n", 0x12345678, 0x12345678);
@@ -50,7 +57,17 @@ void test_printf(void)
     printf("test printf %x %x %x %x %x %x %x\n",
     0x12345678, 0x12345678, 0x12345678, 0x12345678,
     0x12345678, 0x12345678, 0x12345678);
-
+    printf("test printf %x %x %x %x %x %x %x %x\n",
+    0x12345678, 0x12345678, 0x12345678, 0x12345678,
+    0x12345678, 0x12345678, 0x12345678, 0x12345678);
+    printf("test printf %x %x %x %x %x %x %x %x %x\n",
+    0x12345678, 0x12345678, 0x12345678, 0x12345678,
+    0x12345678, 0x12345678, 0x12345678, 0x12345678,
+    0x12345678);
+    printf("test printf %x %x %x %x %x %x %x %x %x %x\n",
+    0x12345678, 0x12345678, 0x12345678, 0x12345678,
+    0x12345678, 0x12345678, 0x12345678, 0x12345678,
+    0x12345678, 0x12345678);
 
     printf("test printf %s\n", "test");
     printf("test printf %s %s\n", "test", "test");
@@ -59,6 +76,9 @@ void test_printf(void)
     printf("test printf %s %s %s %s %s\n", "test", "test", "test", "test", "test");
     printf("test printf %s %s %s %s %s %s\n", "test", "test", "test", "test", "test", "test");
     printf("test printf %s %s %s %s %s %s %s\n", "test", "test", "test", "test", "test", "test", "test");
+    printf("test printf %s %s %s %s %s %s %s %s\n", "test", "test", "test", "test", "test", "test", "test", "test");
+    printf("test printf %s %s %s %s %s %s %s %s %s\n", "test", "test", "test", "test", "test", "test", "test", "test", "test");
+    printf("test printf %s %s %s %s %s %s %s %s %s %s\n", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test");  
 
     printf("test printf %c\n", 'a');
     printf("test printf %c %c\n", 'a', 'b');
@@ -67,7 +87,13 @@ void test_printf(void)
     printf("test printf %c %c %c %c %c\n", 'a', 'b', 'c', 'd', 'e');
     printf("test printf %c %c %c %c %c %c\n", 'a', 'b', 'c', 'd', 'e', 'f');
     printf("test printf %c %c %c %c %c %c %c\n", 'a', 'b', 'c', 'd', 'e', 'f', 'g');
+    printf("test printf %c %c %c %c %c %c %c %c\n", 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h');
+    printf("test printf %c %c %c %c %c %c %c %c %c\n", 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
+    printf("test printf %c %c %c %c %c %c %c %c %c %c\n", 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j');
 
-    printf("test printf %d %x %s %c\n", 1, 0x12345678, "test", 'a');
-    printf("test printf %d %x %s %c %d %x %s\n", 1, 0x12345678, "test", 'a', 2, 0x12345678, "test");
+    printf("test printf %s %d %c %x\n", "test", 1, 'a', 0x12345678);
+    printf("test printf %s %d %c %x %s %d %c %x\n", "test", 1, 'a', 0x12345678, "test", 1, 'a', 0x12345678);
+    printf("test printf %s %d %c %x %s %d %c %x %s %d %c %x\n", "test", 1, 'a', 0x12345678, "test", 1, 'a', 0x12345678, "test", 1, 'a', 0x12345678);
+    printf("test printf %s %d %c %x %s %d %c %x %s %d %c %x %s %d %c %x\n", "test", 1, 'a', 0x12345678, "test", 1, 'a', 0x12345678,
+    "test", 1, 'a', 0x12345678, "test", 1, 'a', 0x12345678);
 }

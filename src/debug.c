@@ -9,10 +9,11 @@ typedef char * va_list;
 #define va_arg(ap,t)   (*(t *)((ap += (2 * _INTSIZEOF(t))) - (2 * _INTSIZEOF(t))))
 #define va_end(ap)     ( ap = (va_list)0 )
 #else // CONFIG_HOST_LINUX
-#define _INTSIZEOF(n)  ((sizeof(n) + sizeof(int) - 1) & ~(sizeof(int) - 1))
-#define va_start(ap,v) (ap = (va_list)&v - (7 * _INTSIZEOF(v)))
-#define va_arg(ap,t)   (*(t *)((ap += (2 * _INTSIZEOF(t))) - (2 * _INTSIZEOF(t))))
-#define va_end(ap)     ( ap = (va_list)0 )
+#define va_list         __builtin_va_list
+#define va_start(v,l)   __builtin_va_start(v,l)
+#define va_end(v)       __builtin_va_end(v)
+#define va_arg(v,l)     __builtin_va_arg(v,l)
+#define va_copy(d,s)    __builtin_va_copy(d,s)
 #endif
 
 char num_tab[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9','a','b','c','d','e','f'};
