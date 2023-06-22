@@ -58,7 +58,7 @@ static int vprintf(const char *fmt, va_list ap)
         case 'u': putnum(va_arg(ap, unsigned int), 10, 0); break;
         case 'x': putnum(va_arg(ap, unsigned int), 16, 0); break;
         case 'c': uart_putc(va_arg(ap, int)); break;
-        case 's': uart_puts((char *)va_arg(ap,int)); break;
+        case 's': uart_puts(va_arg(ap,char *)); break;
         default:
             uart_putc(*fmt);
             break;
