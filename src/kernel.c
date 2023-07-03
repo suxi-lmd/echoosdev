@@ -3,6 +3,7 @@
 #include "gpio.h"
 #include "timer.h"
 #include "debug.h"
+#include "mm.h"
 
 void print_boot_info(void);
 
